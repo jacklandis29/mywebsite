@@ -176,7 +176,7 @@ export default function Home() {
           <div>
             <h1>Jack Landis</h1>
             <p className="bio">
-              I&rsquo;m a builder in Washington, D.C., working across agentic AI,
+              I&rsquo;m based in Washington, D.C., working across data &amp; AI,
               mission systems, and forward-deployed delivery.
             </p>
           </div>

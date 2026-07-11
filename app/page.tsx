@@ -253,7 +253,7 @@ export default function Home() {
 
             return (
               <li key={project.name}>
-                {"href" in project ? (
+                {project.href ? (
                   <Link className="row row-stacked project-link project-item" href={project.href}>
                     {content}
                   </Link>
@@ -285,7 +285,7 @@ export default function Home() {
 
             return (
               <li key={artifact.name}>
-                {"href" in artifact ? (
+                {artifact.href ? (
                   <Link className="artifact-card" href={artifact.href}>{content}</Link>
                 ) : (
                   <div className="artifact-card">{content}</div>

@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useRef, useState } from "react";
+import { playSound } from "../lib/sound";
 
 type Status = "idle" | "sending" | "sent" | "error";
 
@@ -13,8 +14,8 @@ export default function ContactModal() {
 
   const toggle = () => {
     if (status === "sent") return;
-
     const opening = !isOpen;
+    playSound(opening ? "bloom" : "droplet");
     setIsOpen(opening);
     setStatus("idle");
     setError("");
@@ -72,84 +73,44 @@ export default function ContactModal() {
         className={`contact-reveal${isOpen ? " is-open" : ""}`}
         aria-hidden={!isOpen}
         onTransitionEnd={(event) => {
-          if (
-            isOpen &&
-            event.target === event.currentTarget &&
-            event.propertyName === "grid-template-rows"
-          ) {
+          if (isOpen && event.target === event.currentTarget && event.propertyName === "grid-template-rows") {
             nameRef.current?.focus({ preventScroll: true });
           }
         }}
       >
         <div className="contact-reveal-inner">
           <div className="contact-panel">
-          {status === "sent" ? (
-            <div className="contact-success" role="status">
-              <span className="contact-success-mark" aria-hidden="true">✓</span>
-              <h2>Message sent.</h2>
-              <p>Thanks for reaching out. I’ll get back to you soon.</p>
-              <button type="button" onClick={() => setIsOpen(false)}>
-                Close
-              </button>
-            </div>
-          ) : (
-            <>
-              <form className="contact-form" onSubmit={submit}>
-                <div className="contact-fields">
-                  <label>
-                    <span>Name</span>
-                    <input
-                      ref={nameRef}
-                      name="name"
-                      type="text"
-                      autoComplete="name"
-                      maxLength={100}
-                      required
-                    />
-                  </label>
-                  <label>
-                    <span>Email</span>
-                    <input
-                      name="email"
-                      type="email"
-                      inputMode="email"
-                      autoComplete="email"
-                      maxLength={254}
-                      required
-                    />
-                  </label>
-                </div>
+            <form className="contact-form" onSubmit={submit}>
+              <div className="contact-fields">
                 <label>
-                  <span>Message</span>
-                  <textarea
-                    name="message"
-                    rows={5}
-                    maxLength={2000}
-                    placeholder="Leave a note."
-                    required
-                  />
+                  <span>Name</span>
+                  <input ref={nameRef} name="name" type="text" autoComplete="name" maxLength={100} required />
                 </label>
-                <label className="contact-honeypot" aria-hidden="true">
-                  <span>Company website</span>
-                  <input name="website" tabIndex={-1} autoComplete="off" />
+                <label>
+                  <span>Email</span>
+                  <input name="email" type="email" inputMode="email" autoComplete="email" maxLength={254} required />
                 </label>
-
-                {status === "error" && (
-                  <p className="contact-error" role="alert">
-                    {error}{" "}
-                    <a href="mailto:jacklandis2@icloud.com">Email me directly</a>.
-                  </p>
-                )}
-
-                <div className="contact-actions">
-                  <button className="contact-submit" type="submit" disabled={status === "sending"}>
-                    {status === "sending" ? "Sending…" : "Send message"}
-                    <span aria-hidden="true">→</span>
-                  </button>
-                </div>
-              </form>
-            </>
-          )}
+              </div>
+              <label>
+                <span>Message</span>
+                <textarea name="message" rows={5} maxLength={2000} placeholder="Leave a note." required />
+              </label>
+              <label className="contact-honeypot" aria-hidden="true">
+                <span>Company website</span>
+                <input name="website" tabIndex={-1} autoComplete="off" />
+              </label>
+              {status === "error" && (
+                <p className="contact-error" role="alert">
+                  {error} <a href="mailto:jacklandis2@icloud.com">Email me directly</a>.
+                </p>
+              )}
+              <div className="contact-actions">
+                <button className="contact-submit" type="submit" disabled={status === "sending"}>
+                  {status === "sending" ? "Sending…" : "Send message"}
+                  <span aria-hidden="true">→</span>
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       </div>

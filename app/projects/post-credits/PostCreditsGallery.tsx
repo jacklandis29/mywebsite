@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useState } from "react";
 
 const screenshots = [
@@ -45,8 +46,13 @@ export default function PostCreditsGallery() {
               onClick={() => setActiveScreenshot(screenshot)}
               aria-label={`View ${screenshot.caption.toLowerCase()} screenshot full size`}
             >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={screenshot.src} alt={screenshot.alt} />
+              <Image
+                src={screenshot.src}
+                alt={screenshot.alt}
+                width={1440}
+                height={900}
+                sizes="(max-width: 640px) calc(100vw - 48px), 440px"
+              />
             </button>
             <figcaption>{screenshot.caption}</figcaption>
           </figure>
@@ -64,15 +70,20 @@ export default function PostCreditsGallery() {
           <button
             className="project-lightbox-close"
             type="button"
-            onClick={() => setActiveScreenshot(null)}
+            onClick={(event) => {
+              event.stopPropagation();
+              setActiveScreenshot(null);
+            }}
             aria-label="Close full-size screenshot"
           >
             Close
           </button>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             src={activeScreenshot.src}
             alt={activeScreenshot.alt}
+            width={1440}
+            height={900}
+            sizes="100vw"
             onClick={(event) => event.stopPropagation()}
           />
         </div>

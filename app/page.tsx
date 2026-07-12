@@ -1,9 +1,12 @@
+import Image from "next/image";
 import GlassNav from "./components/GlassNav";
-import HomeScrollRestoration from "./components/HomeScrollRestoration";
 import ContactModal from "./components/ContactModal";
 import LocalTime from "./components/LocalTime";
 import WorkSection from "./components/WorkSection";
-import Link from "next/link";
+import FilmCard from "./components/FilmCard";
+import ProjectCard from "./components/ProjectCard";
+import OverscrollReward from "./components/OverscrollReward";
+import MoreWritingButton from "./components/MoreWritingButton";
 
 const writing = [
   { year: "2026", title: "Building this site", href: "/writing/building-taste-into-the-process?from=home" },
@@ -14,12 +17,21 @@ const projects = [
     name: "CRM to Narrative",
     description: "A source-grounded workflow that detects meaningful CRM changes, adds business context, and drafts review-ready reporting.",
     meta: "Workflow design",
+    variant: "narrative",
     href: "/projects/crm-to-narrative",
+  },
+  {
+    name: "Consilium: Agentic Trading",
+    description: "A paper investment fund where specialized agents debate ideas, work within hard risk limits, and preserve what they learn.",
+    meta: "System build · In progress",
+    variant: "consilium",
+    href: "/projects/consilium",
   },
   {
     name: "Post Credits",
     description: "A simpler film diary with a Beli-style comparison system for ranking what you watch.",
     meta: "In progress",
+    variant: "after",
     href: "/projects/post-credits",
   },
 ];
@@ -48,27 +60,10 @@ const listening = [
   },
 ];
 
-const artifacts = [
-  {
-    name: "CRM to Narrative",
-    kind: "Workflow",
-    description: "Validated signal → contextual narrative → review-ready update",
-    variant: "narrative",
-    href: "/projects/crm-to-narrative",
-  },
-  {
-    name: "Post Credits",
-    kind: "Product build",
-    description: "Film diary, personal ranking, and watchlist",
-    variant: "after",
-    href: "/projects/post-credits",
-  },
-];
-
 const reading = [
-  { title: "Iron Gold", author: "Pierce Brown", tone: "gold" },
-  { title: "Sunrise on the Reaping", author: "Suzanne Collins", tone: "sunrise" },
-  { title: "Project Hail Mary", author: "Andy Weir", tone: "space" },
+  { title: "Iron Gold", author: "Pierce Brown", cover: "/books/iron-gold.jpg" },
+  { title: "Sunrise on the Reaping", author: "Suzanne Collins", cover: "/books/sunrise-on-the-reaping.jpg" },
+  { title: "Project Hail Mary", author: "Andy Weir", cover: "/books/project-hail-mary.jpg" },
 ];
 
 const watching = [
@@ -117,17 +112,16 @@ const watching = [
 export default function Home() {
   return (
     <main className="page">
-      <HomeScrollRestoration />
       <GlassNav />
       <header className="masthead">
         <div className="identity-lockup">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             className="portrait"
             src="/jack.png"
             alt="Illustrated portrait of Jack Landis"
             width={72}
             height={72}
+            sizes="72px"
           />
           <div>
             <h1>Jack Landis</h1>
@@ -139,14 +133,6 @@ export default function Home() {
         </div>
         <ContactModal />
         <ul className="icon-links" aria-label="Elsewhere">
-          <li>
-            <a className="icon-link icon-link-email" href="mailto:jacklandis2@icloud.com" aria-label="Email Jack Landis" title="jacklandis2@icloud.com">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <circle cx="12" cy="12" r="4" />
-                <path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-4 8" />
-              </svg>
-            </a>
-          </li>
           <li>
             <a className="icon-link icon-link-github" href="https://github.com/jacklandis29" rel="me noopener" aria-label="GitHub" title="GitHub">
               <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -176,56 +162,16 @@ export default function Home() {
             </li>
           ))}
         </ul>
-        <Link className="section-link" href="/writing">
-          See all writing <span aria-hidden="true">→</span>
-        </Link>
+        <MoreWritingButton />
       </section>
 
       <section id="projects">
         <h2>Projects</h2>
-        <ul className="list">
+        <ul className="artifact-grid project-grid">
           {projects.map((project) => {
-            const content = (
-              <>
-                <span className="row-title">
-                  {project.name}
-                  <span className="row-meta">{project.meta}</span>
-                </span>
-                <span className="row-description">{project.description}</span>
-              </>
-            );
-
             return (
               <li key={project.name}>
-                <Link className="row row-stacked project-link" href={project.href}>
-                  {content}
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
-      </section>
-
-      <section id="artifacts">
-        <h2>Artifacts</h2>
-        <ul className="artifact-grid">
-          {artifacts.map((artifact) => {
-            const content = (
-              <>
-                <span className={`artifact-visual artifact-${artifact.variant}`} aria-hidden="true">
-                  <i /><i /><i /><i />
-                </span>
-                <span className="artifact-copy">
-                  <strong>{artifact.name}</strong>
-                  <small>{artifact.kind}</small>
-                  <span>{artifact.description}</span>
-                </span>
-              </>
-            );
-
-            return (
-              <li key={artifact.name}>
-                <Link className="artifact-card" href={artifact.href}>{content}</Link>
+                <ProjectCard {...project} />
               </li>
             );
           })}
@@ -243,8 +189,14 @@ export default function Home() {
           {listening.map((item) => (
             <li key={item.title}>
               <a className="album-card" href={item.href}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img className="album-cover shelf-art" src={item.cover} alt={`${item.title} album cover`} width={600} height={600} />
+                <Image
+                  className="album-cover shelf-art"
+                  src={item.cover}
+                  alt={`${item.title} album cover`}
+                  width={600}
+                  height={600}
+                  sizes="190px"
+                />
                 <span className="album-copy">
                   <span className="album-title">{item.title}</span>
                   <span className="album-meta">{item.artist} · {item.year}</span>
@@ -266,17 +218,7 @@ export default function Home() {
         <ul className="media-shelf film-grid" tabIndex={0} aria-label="Films, scroll horizontally">
           {watching.map((item) => (
             <li key={item.title}>
-              <a className="film-card" href={item.href}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img className="film-poster" src={item.poster} alt={`${item.title} poster`} width={600} height={900} />
-                <span className="film-copy">
-                  <span className="film-title">{item.title}</span>
-                  <span className="film-meta">{item.meta}</span>
-                  <span className="film-rating">
-                    {item.rating}{item.liked && <span className="film-liked" aria-label="Liked">♥</span>}
-                  </span>
-                </span>
-              </a>
+              <FilmCard {...item} />
             </li>
           ))}
         </ul>
@@ -284,13 +226,17 @@ export default function Home() {
 
       <section id="reading">
         <h2>Reading</h2>
-        <ul className="reading-shelf">
+        <ul className="media-shelf reading-shelf" tabIndex={0} aria-label="Books, scroll horizontally">
           {reading.map((book) => (
             <li key={book.title}>
-              <div className={`book-cover book-cover-${book.tone}`} aria-hidden="true">
-                <span>{book.title}</span>
-                <small>{book.author}</small>
-              </div>
+              <Image
+                className="book-cover"
+                src={book.cover}
+                alt={`${book.title} book cover`}
+                width={400}
+                height={600}
+                sizes="164px"
+              />
               <span className="book-copy">
                 <strong>{book.title}</strong>
                 <small>{book.author}</small>
@@ -304,6 +250,7 @@ export default function Home() {
         <p>© {new Date().getFullYear()} Jack Landis</p>
         <LocalTime />
       </footer>
+      <OverscrollReward />
     </main>
   );
 }

@@ -20,11 +20,10 @@ export default function CrmToNarrativePage() {
   return (
     <main className="page project-page narrative-page">
       <header className="project-header">
-        <Link className="back-link" href="/#projects">
+        <Link className="back-link" href="/" scroll={false}>
           <span aria-hidden="true">←</span> Projects
         </Link>
 
-        <p className="project-kicker">Workflow design · Sanitized case study</p>
         <h1>CRM to Narrative</h1>
         <p className="project-dek">
           How I turned a slow, manual reporting chain into a system that keeps
@@ -34,10 +33,7 @@ export default function CrmToNarrativePage() {
 
       <section className="narrative-workflow" aria-labelledby="workflow-title">
         <div className="narrative-workflow-header">
-          <div>
-            <span className="narrative-eyebrow">System view</span>
-            <h2 id="workflow-title">From signal to story</h2>
-          </div>
+          <h2 id="workflow-title">From signal to story</h2>
           <span className="narrative-status"><i /> Review path active</span>
         </div>
 
@@ -171,7 +167,7 @@ export default function CrmToNarrativePage() {
 
       <footer className="article-footer project-footer">
         <p>CRM to Narrative · Reporting workflow</p>
-        <Link className="back-link" href="/#projects">
+        <Link className="back-link" href="/" scroll={false}>
           <span aria-hidden="true">←</span> Back home
         </Link>
       </footer>

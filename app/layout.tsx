@@ -1,24 +1,29 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
+import SoundEffects from "./components/SoundEffects";
+import HomeScrollRestoration from "./components/HomeScrollRestoration";
 import "./globals.css";
 
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.jacklandis.com"),
   title: "Jack Landis",
   description: "The personal website of Jack Landis.",
-  icons: { icon: "/jack.png", shortcut: "/jack.png", apple: "/jack.png" },
+  icons: { icon: "/favicon.svg", shortcut: "/favicon.svg", apple: "/jack.png" },
   openGraph: {
     title: "Jack Landis",
     description: "The personal website of Jack Landis.",
     type: "website",
+    images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "Jack Landis" }],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "Jack Landis",
     description: "The personal website of Jack Landis.",
+    images: ["/og.jpg"],
   },
 };
 
@@ -33,6 +38,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
+        <HomeScrollRestoration />
+        <SoundEffects />
         {children}
         <Analytics />
       </body>

@@ -1,27 +1,19 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { Suspense } from "react";
+import { ArticleBackLink } from "./ArticleBackLink";
 
 export const metadata: Metadata = {
   title: "Building this site — Jack Landis",
   description: "I needed to start making things again, so I built this site.",
 };
 
-export default async function ArticlePage({
-  searchParams,
-}: {
-  searchParams: Promise<{ from?: string }>;
-}) {
-  const { from } = await searchParams;
-  const cameFromHome = from === "home";
-  const backHref = cameFromHome ? "/#writing" : "/writing";
-  const backLabel = cameFromHome ? "Jack Landis" : "Writing";
-
+export default function ArticlePage() {
   return (
     <main className="page article-page">
       <header className="article-header">
-        <Link className="back-link" href={backHref}>
-          <span aria-hidden="true">←</span> {backLabel}
-        </Link>
+        <Suspense fallback={<span className="back-link">← Writing</span>}>
+          <ArticleBackLink />
+        </Suspense>
 
         <p className="article-kicker">A note on making things</p>
         <h1>Building this site</h1>
@@ -118,9 +110,9 @@ export default async function ArticlePage({
 
       <footer className="article-footer">
         <p>Thanks for reading.</p>
-        <Link className="back-link" href={backHref}>
-          <span aria-hidden="true">←</span> {cameFromHome ? "Back home" : "All writing"}
-        </Link>
+        <Suspense fallback={<span className="back-link">← All writing</span>}>
+          <ArticleBackLink footer />
+        </Suspense>
       </footer>
     </main>
   );

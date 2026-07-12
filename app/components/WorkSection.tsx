@@ -1,6 +1,8 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
+import { playSound } from "../lib/sound";
 
 const roles = [
   {
@@ -10,10 +12,8 @@ const roles = [
     date: "Current",
     logo: (
       <span className="work-logo-frame">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img className="work-logo work-logo-light" src="/deloitte.png" alt="" width={24} height={24} />
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img className="work-logo work-logo-dark work-logo-deloitte-dark" src="/deloitte-dark.png" alt="" width={24} height={24} />
+        <Image className="work-logo work-logo-light" src="/deloitte.png" alt="" width={24} height={24} sizes="24px" />
+        <Image className="work-logo work-logo-dark work-logo-deloitte-dark" src="/deloitte-dark.png" alt="" width={24} height={24} sizes="24px" />
       </span>
     ),
     detail:
@@ -28,8 +28,7 @@ const roles = [
     date: "Previously",
     logo: (
       <span className="work-logo-frame work-logo-frame-jandj">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img className="work-logo work-logo-jandj" src="/jnj-mark.png" alt="" width={32} height={22} />
+        <Image className="work-logo work-logo-jandj" src="/jnj-mark.png" alt="" width={32} height={22} sizes="32px" />
       </span>
     ),
     detail:
@@ -53,7 +52,10 @@ export default function WorkSection() {
               type="button"
               aria-expanded={isOpen}
               aria-controls={`work-detail-${item.id}`}
-              onClick={() => setOpen(isOpen ? null : item.id)}
+              onClick={() => {
+                playSound(isOpen ? "droplet" : "bloom");
+                setOpen(isOpen ? null : item.id);
+              }}
             >
               <span className="work-identity">
                 {item.logo}

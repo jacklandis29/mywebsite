@@ -23,11 +23,10 @@ export default function PostCreditsPage() {
   return (
     <main className="page project-page post-credits-page">
       <header className="project-header">
-        <Link className="back-link" href="/#projects">
+        <Link className="back-link" href="/" scroll={false}>
           <span aria-hidden="true">←</span> Projects
         </Link>
 
-        <p className="project-kicker">Product build · In progress</p>
         <h1>Post Credits</h1>
         <p className="project-dek">
           Letterboxd is annoying to use, but I love movies, so I thought I’d
@@ -98,7 +97,7 @@ export default function PostCreditsPage() {
 
       <footer className="article-footer project-footer">
         <p>Post Credits · In progress</p>
-        <Link className="back-link" href="/#projects">
+        <Link className="back-link" href="/" scroll={false}>
           <span aria-hidden="true">←</span> Back home
         </Link>
       </footer>

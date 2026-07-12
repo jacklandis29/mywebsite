@@ -29,9 +29,7 @@ const roles = [
     logo: (
       <span className="work-logo-frame work-logo-frame-jandj">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img className="work-logo work-logo-light work-logo-jandj" src="/jnj-mark.png" alt="" width={32} height={22} />
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img className="work-logo work-logo-dark work-logo-jandj-dark" src="/jnj-dark.png" alt="" width={32} height={22} />
+        <img className="work-logo work-logo-jandj" src="/jnj-mark.png" alt="" width={32} height={22} />
       </span>
     ),
     detail:

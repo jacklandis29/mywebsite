@@ -5,18 +5,21 @@ import { FormEvent, useRef, useState } from "react";
 type Status = "idle" | "sending" | "sent" | "error";
 
 export default function ContactModal() {
-  const messageRef = useRef<HTMLTextAreaElement>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const nameRef = useRef<HTMLInputElement>(null);
   const [isOpen, setIsOpen] = useState(false);
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState("");
 
   const toggle = () => {
+    if (status === "sent") return;
+
     const opening = !isOpen;
     setIsOpen(opening);
     setStatus("idle");
     setError("");
     if (opening && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      requestAnimationFrame(() => messageRef.current?.focus({ preventScroll: true }));
+      requestAnimationFrame(() => nameRef.current?.focus({ preventScroll: true }));
     }
   };
 
@@ -35,6 +38,8 @@ export default function ContactModal() {
     if (response?.ok) {
       form.reset();
       setStatus("sent");
+      setIsOpen(false);
+      requestAnimationFrame(() => triggerRef.current?.focus({ preventScroll: true }));
       return;
     }
 
@@ -46,13 +51,20 @@ export default function ContactModal() {
   return (
     <>
       <button
-        className={`intro-cta${isOpen ? " is-open" : ""}`}
+        ref={triggerRef}
+        className={`intro-cta${isOpen ? " is-open" : ""}${status === "sent" ? " is-sent" : ""}`}
         type="button"
         aria-expanded={isOpen}
         aria-controls="contact-panel"
+        aria-disabled={status === "sent"}
+        aria-live="polite"
         onClick={toggle}
       >
-        Get in touch <span aria-hidden="true">{isOpen ? "×" : "→"}</span>
+        {status === "sent" ? (
+          <>Thanks — message sent <span aria-hidden="true">✓</span></>
+        ) : (
+          <>Get in touch <span aria-hidden="true">{isOpen ? "×" : "→"}</span></>
+        )}
       </button>
 
       <div
@@ -65,7 +77,7 @@ export default function ContactModal() {
             event.target === event.currentTarget &&
             event.propertyName === "grid-template-rows"
           ) {
-            messageRef.current?.focus({ preventScroll: true });
+            nameRef.current?.focus({ preventScroll: true });
           }
         }}
       >
@@ -83,14 +95,37 @@ export default function ContactModal() {
           ) : (
             <>
               <form className="contact-form" onSubmit={submit}>
+                <div className="contact-fields">
+                  <label>
+                    <span>Name</span>
+                    <input
+                      ref={nameRef}
+                      name="name"
+                      type="text"
+                      autoComplete="name"
+                      maxLength={100}
+                      required
+                    />
+                  </label>
+                  <label>
+                    <span>Email</span>
+                    <input
+                      name="email"
+                      type="email"
+                      inputMode="email"
+                      autoComplete="email"
+                      maxLength={254}
+                      required
+                    />
+                  </label>
+                </div>
                 <label>
                   <span>Message</span>
                   <textarea
-                    ref={messageRef}
                     name="message"
                     rows={5}
                     maxLength={2000}
-                    placeholder="Leave a note—and your email if you’d like a reply."
+                    placeholder="Leave a note."
                     required
                   />
                 </label>

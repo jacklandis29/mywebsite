@@ -6,41 +6,21 @@ import WorkSection from "./components/WorkSection";
 import Link from "next/link";
 
 const writing = [
-  { year: "2026", title: "Building taste into the process", href: "/writing/building-taste-into-the-process?from=home" },
+  { year: "2026", title: "Building this site", href: "/writing/building-taste-into-the-process?from=home" },
 ];
 
 const projects = [
   {
-    name: "CSOP Harness",
-    description: "A client delivery workspace that turns solicitation requirements into sprint plans and working prototypes.",
-    meta: "Client Build",
-    preview: "harness",
-  },
-  {
-    name: "Staffing Coordination",
-    description: "A local-LLM tool for candidate screening, interviewer assignment, and automated standup summaries.",
-    meta: "AI Tool",
-    preview: "staffing",
-  },
-  {
     name: "CRM to Narrative",
     description: "A source-grounded workflow that detects meaningful CRM changes, adds business context, and drafts review-ready reporting.",
-    meta: "Applied AI",
+    meta: "Workflow design",
     href: "/projects/crm-to-narrative",
-    preview: "narrative",
   },
   {
-    name: "After Credits",
-    description: "A cinematic, no-bloat home for people who genuinely love film.",
-    meta: "Concept",
-    href: "/projects/after-credits",
-    preview: "after",
-  },
-  {
-    name: "PricePoint",
-    description: "Purchasing and pricing clarity for restaurant teams.",
-    meta: "Product",
-    preview: "pricepoint",
+    name: "Post Credits",
+    description: "A simpler film diary with a Beli-style comparison system for ranking what you watch.",
+    meta: "In progress",
+    href: "/projects/post-credits",
   },
 ];
 
@@ -70,12 +50,6 @@ const listening = [
 
 const artifacts = [
   {
-    name: "CSOP Harness",
-    kind: "System map",
-    description: "Requirements → sprint plan → working prototype",
-    variant: "harness",
-  },
-  {
     name: "CRM to Narrative",
     kind: "Workflow",
     description: "Validated signal → contextual narrative → review-ready update",
@@ -83,11 +57,11 @@ const artifacts = [
     href: "/projects/crm-to-narrative",
   },
   {
-    name: "After Credits",
-    kind: "Product brief",
-    description: "Film diary concept, interaction model, and build direction",
+    name: "Post Credits",
+    kind: "Product build",
+    description: "Film diary, personal ranking, and watchlist",
     variant: "after",
-    href: "/projects/after-credits",
+    href: "/projects/post-credits",
   },
 ];
 
@@ -139,25 +113,6 @@ const watching = [
     href: "https://letterboxd.com/film/obsession-2025/",
   },
 ];
-
-function ProjectPreview({ name, variant }: { name: string; variant: string }) {
-  return (
-    <span className={`project-preview project-preview-${variant}`} aria-hidden="true">
-      <span className="project-preview-titlebar">
-        <span className="project-preview-dots"><i /><i /><i /></span>
-        <small>{name}</small>
-      </span>
-      <span className="project-preview-canvas">
-        <span className="project-preview-sidebar"><i /><i /><i /><i /></span>
-        <span className="project-preview-main">
-          <span className="project-preview-heading"><i /><i /></span>
-          <span className="project-preview-visual"><i /><i /><i /></span>
-          <span className="project-preview-caption"><i /><i /></span>
-        </span>
-      </span>
-    </span>
-  );
-}
 
 export default function Home() {
   return (
@@ -237,19 +192,14 @@ export default function Home() {
                   <span className="row-meta">{project.meta}</span>
                 </span>
                 <span className="row-description">{project.description}</span>
-                <ProjectPreview name={project.name} variant={project.preview} />
               </>
             );
 
             return (
               <li key={project.name}>
-                {project.href ? (
-                  <Link className="row row-stacked project-link project-item" href={project.href}>
-                    {content}
-                  </Link>
-                ) : (
-                  <div className="row row-stacked project-item" tabIndex={0}>{content}</div>
-                )}
+                <Link className="row row-stacked project-link" href={project.href}>
+                  {content}
+                </Link>
               </li>
             );
           })}
@@ -275,11 +225,7 @@ export default function Home() {
 
             return (
               <li key={artifact.name}>
-                {artifact.href ? (
-                  <Link className="artifact-card" href={artifact.href}>{content}</Link>
-                ) : (
-                  <div className="artifact-card">{content}</div>
-                )}
+                <Link className="artifact-card" href={artifact.href}>{content}</Link>
               </li>
             );
           })}

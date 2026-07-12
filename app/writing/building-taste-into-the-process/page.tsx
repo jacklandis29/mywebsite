@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Building taste into the process — Jack Landis",
-  description: "Notes on making considered choices before the work feels finished.",
+  title: "Building this site — Jack Landis",
+  description: "I needed to start making things again, so I built this site.",
 };
 
 export default async function ArticlePage({
@@ -23,83 +23,96 @@ export default async function ArticlePage({
           <span aria-hidden="true">←</span> {backLabel}
         </Link>
 
-        <p className="article-kicker">Design &amp; process</p>
-        <h1>Building taste into the process</h1>
+        <p className="article-kicker">A note on making things</p>
+        <h1>Building this site</h1>
         <p className="article-dek">
-          Good work rarely arrives fully formed. It emerges from a process that
-          knows what to notice, what to question, and when to keep going.
+          I needed to start making things again, so I built this site.
         </p>
         <div className="article-meta">
           <time dateTime="2026-07">July 2026</time>
           <span aria-hidden="true">·</span>
-          <span>5 min read</span>
+          <span>3 min read</span>
         </div>
       </header>
 
       <article className="article-body">
         <p>
-          Taste is often treated like a finishing layer: the thing you apply
-          once the strategy is sound, the system works, and the deadline is
-          already uncomfortably close. By then, most of the important choices
-          have been made.
+          I had been thinking about building a personal site for a while. Mostly
+          I was thinking about building a lot of things. I had notes, half-formed
+          ideas, screenshots, and folders full of things I might get around to.
+          At some point I realized I needed to stop organizing the possibility
+          of making something and actually make something.
         </p>
 
         <p>
-          The more useful version of taste is operational. It changes how a
-          problem is framed, which constraints are accepted, and what the team
-          decides is worth polishing. It belongs inside the process, not at the
-          end of it.
+          This site became the kickstart. It was small enough to begin without a
+          grand plan, but personal enough that I would care about getting it
+          right. More importantly, it gave the next thing I build somewhere to
+          go.
         </p>
 
-        <h2>The invisible standard</h2>
+        <h2>More than a resume</h2>
 
         <p>
-          Every project has a standard, whether anyone names it or not. You can
-          see it in the questions people ask during a review. Does the team
-          debate whether something is technically complete, or whether it is
-          genuinely clear? Do they notice the awkward transition, the vague
-          label, the moment where the product asks the user to do its thinking?
+          I knew I did not want to paste my resume onto a webpage and call it a
+          portfolio. Work is part of the site, but so are movies, music, books,
+          ideas, and unfinished projects. That mix is a more honest picture of
+          me than a polished list of accomplishments would be.
         </p>
 
         <p>
-          Naming the standard early makes it available to everyone. “Simple” is
-          too broad. “A new user should understand the next step without
-          instruction” is something a team can design and test against.
+          The question I kept coming back to was simple: if my name disappeared
+          from the top, would this still feel like mine? The restrained layout,
+          the small interactions, the project previews, and the space for what I
+          am reading, watching, and listening to all came from trying to make
+          the answer yes.
         </p>
 
         <blockquote>
-          The point is not to make every choice precious. It is to know which
-          choices make everything else easier.
+          I wanted the site to feel like a place I would actually keep coming
+          back to.
         </blockquote>
 
-        <h2>Make judgment repeatable</h2>
+        <h2>Figuring it out by building</h2>
 
         <p>
-          A good critique should leave behind more than a list of edits. It
-          should sharpen the lens used to make the next round of decisions. The
-          best review question I know is simple: <em>What is this choice helping
-          the person understand?</em>
+          I did not have a complete design system or a perfect picture of the
+          finished site. I built a version, looked at it, noticed what felt
+          generic, and changed it. Some ideas sounded good until I saw them on
+          the page. Others only started working after the content was real.
         </p>
 
         <p>
-          That question works on interfaces, operating processes, decks, and
-          almost anything else made for another person. It moves the discussion
-          away from preference and toward purpose without pretending aesthetics
-          do not matter.
-        </p>
-
-        <h2>Taste compounds</h2>
-
-        <p>
-          Teams build taste the same way they build any other capability: by
-          looking closely, developing a shared vocabulary, making choices, and
-          examining what those choices produced. Over time, fewer decisions need
-          to be escalated because the standard has become part of the work.
+          A lot of the work was small: moving things a few pixels, rewriting a
+          sentence, removing a section, making an interaction feel less stiff.
+          None of it sounds especially important on its own. Together, those
+          choices are the site.
         </p>
 
         <p>
-          The result is not a perfect process. It is a process that catches more
-          of the right things while there is still time to change them.
+          The useful part was having something real to react to. Thinking had
+          gotten me only so far. Building made the decisions obvious.
+        </p>
+
+        <h2>Something to build from</h2>
+
+        <p>
+          Finishing the first version did more than give me a website. It broke
+          the feeling that every idea needed to become a fully formed project
+          before it was worth starting. I can put something small here. I can
+          follow a weird idea for a weekend. I can make it better later.
+        </p>
+
+        <p>
+          That is probably the real reason I built it. I wanted some momentum. A
+          home for the things I make is useful, but becoming someone who is
+          making things again matters more.
+        </p>
+
+        <p>
+          The site is not finished. I do not really want it to be. I want the
+          writing to grow, the projects to get deeper, and the personal sections
+          to keep changing with me. For now, it exists. That was the point.
         </p>
       </article>
 

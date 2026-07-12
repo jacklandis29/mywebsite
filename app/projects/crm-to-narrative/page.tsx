@@ -4,25 +4,16 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "CRM to Narrative — Jack Landis",
   description:
-    "A source-grounded AI workflow for turning CRM changes into contextual, review-ready reporting.",
+    "How I rebuilt a slow reporting handoff into a source-grounded, review-ready publishing workflow.",
 };
 
 const workflow = [
   { number: "01", label: "CRM signal", detail: "Structured data changes at the source", tone: "source" },
   { number: "02", label: "Change detection", detail: "Material movement is isolated", tone: "detect" },
-  { number: "03", label: "Context layer", detail: "Operating knowledge frames the change", tone: "context" },
-  { number: "04", label: "Narrative reasoning", detail: "The what and why are drafted", tone: "reason" },
-  { number: "05", label: "Validation gate", detail: "Every numeric claim is checked", tone: "validate" },
+  { number: "03", label: "Claude Code routine", detail: "The change is caught and checked", tone: "context" },
+  { number: "04", label: "Business context", detail: "The meaning behind it is added", tone: "reason" },
+  { number: "05", label: "Source verification", detail: "Every numeric claim is checked", tone: "validate" },
   { number: "06", label: "Review-ready update", detail: "A traceable brief is prepared", tone: "publish" },
-];
-
-const principles = [
-  "Data remains the source of truth",
-  "Interpretation is grounded in context",
-  "Material changes receive attention",
-  "Numeric claims are validated",
-  "Outputs stay reviewable and traceable",
-  "The pattern can be reused across teams",
 ];
 
 export default function CrmToNarrativePage() {
@@ -33,12 +24,11 @@ export default function CrmToNarrativePage() {
           <span aria-hidden="true">←</span> Projects
         </Link>
 
-        <p className="project-kicker">Applied AI · Sanitized workflow</p>
+        <p className="project-kicker">Workflow design · Sanitized case study</p>
         <h1>CRM to Narrative</h1>
         <p className="project-dek">
-          A source-grounded reporting workflow that turns meaningful CRM
-          changes into contextual, review-ready narrative—without asking AI to
-          invent the facts.
+          How I turned a slow, manual reporting chain into a system that keeps
+          the story attached to the numbers.
         </p>
       </header>
 
@@ -64,9 +54,9 @@ export default function CrmToNarrativePage() {
 
         <div className="narrative-result">
           <div className="narrative-result-rail">
-            <span>Generated brief</span>
+            <span>Prepared brief</span>
             <strong>Material account movement</strong>
-            <small>Prepared for review</small>
+            <small>Ready for review</small>
           </div>
           <div className="narrative-result-main">
             <div className="narrative-result-topline">
@@ -97,72 +87,90 @@ export default function CrmToNarrativePage() {
         </div>
       </section>
 
-      <div className="project-story">
+      <article className="project-story">
         <section className="project-section">
-          <h2>Problem</h2>
+          <h2>The manual process</h2>
           <div className="project-section-body">
             <p>
-              Operational reporting rarely ends when the dashboard refreshes.
-              Someone still has to notice what moved, determine what is
-              meaningful, recover the relevant context, and explain the change
-              clearly. That final mile is repetitive, slow, and easy to handle
-              inconsistently.
+              At work, we tracked partnership activity in a CRM. The data moved
+              from the CRM into an export, from the export into Power BI, and
+              from Power BI into an embedded dashboard. Then someone still had
+              to compare the latest version with the last one, figure out what
+              had changed, and write an explanation.
+            </p>
+            <p>
+              It was a small manual step that became a recurring drain. The
+              dashboard could be current while the written update lagged behind
+              it. Each cycle meant another round of comparison, context hunting,
+              and rewriting.
             </p>
           </div>
         </section>
 
         <section className="project-section">
-          <h2>System</h2>
+          <h2>The workflow</h2>
           <div className="project-section-body">
             <p>
-              The workflow watches structured CRM data for material changes,
-              combines those signals with a controlled business-context layer,
-              and drafts an update that separates what changed from why it
-              matters. The result is prepared for review and publication rather
-              than buried in another export.
+              I set up a Claude Code routine to handle that handoff. When the
+              CRM data changed, the routine compared the new snapshot with the
+              last published version and caught the movement that mattered.
+            </p>
+            <p>
+              It then paired the change with a small context document I
+              maintained for the team: which relationships mattered, what
+              different milestones meant, and why a change was worth calling
+              out. The result was a short update that explained both what moved
+              and why it mattered.
             </p>
           </div>
         </section>
 
         <section className="project-section">
-          <h2>Trust</h2>
+          <h2>Keeping it accurate</h2>
           <div className="project-section-body">
             <p>
-              The core design constraint is simple: numbers come from validated
-              data; AI provides interpretation. Numeric claims are checked
-              against their source fields before the narrative moves forward,
-              preserving provenance and a human review path.
+              The CRM stayed the source of truth. The routine could explain a
+              change, but it could not invent or alter the figures. Every
+              numeric claim had to resolve to a field in the validated snapshot
+              before the update could move forward.
             </p>
-            <p className="project-statement">
-              “The model explains the signal. It does not own the truth.”
+            <p>
+              I kept the source fields attached and left a human review step at
+              the end. That made it easy to check the explanation against the
+              dashboard before it was published.
             </p>
           </div>
         </section>
 
         <section className="project-section">
-          <h2>Pattern</h2>
-          <div className="project-section-body">
-            <ul className="principle-grid">
-              {principles.map((principle) => <li key={principle}>{principle}</li>)}
-            </ul>
-          </div>
-        </section>
-
-        <section className="project-section">
-          <h2>Note</h2>
+          <h2>The result</h2>
           <div className="project-section-body">
             <p>
-              This public artifact abstracts an operating workflow implemented
-              for an internal team. The data, scenarios, and organizational
-              context shown here are synthetic; the system pattern and design
-              decisions are representative.
+              A repetitive writing task became a short review. The narrative
+              could move with the dashboard instead of trailing it, and the
+              update was more consistent from one reporting cycle to the next.
+            </p>
+            <p>
+              The useful part was not adding more reporting. It was closing the
+              gap between a number changing and the team understanding what the
+              change meant.
             </p>
           </div>
         </section>
-      </div>
+
+        <section className="project-section project-note">
+          <h2>About this page</h2>
+          <div className="project-section-body">
+            <p>
+              This is a sanitized version of an internal workflow. The example
+              data and scenario are illustrative.
+            </p>
+          </div>
+        </section>
+      </article>
 
       <footer className="article-footer project-footer">
-        <p>CRM to Narrative · Applied AI workflow</p>
+        <p>CRM to Narrative · Reporting workflow</p>
         <Link className="back-link" href="/#projects">
           <span aria-hidden="true">←</span> Back home
         </Link>

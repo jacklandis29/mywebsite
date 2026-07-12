@@ -9,8 +9,8 @@ export const metadata: Metadata = {
 const writing = [
   {
     date: "Jul 2026",
-    title: "Building taste into the process",
-    description: "Notes on making considered choices before the work feels finished.",
+    title: "Building this site",
+    description: "I needed to start making things again, so I built this site.",
     href: "/writing/building-taste-into-the-process?from=writing",
   },
 ];

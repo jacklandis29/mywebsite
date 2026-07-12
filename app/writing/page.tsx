@@ -13,36 +13,6 @@ const writing = [
     description: "Notes on making considered choices before the work feels finished.",
     href: "/writing/building-taste-into-the-process?from=writing",
   },
-  {
-    date: "May 2026",
-    title: "The operator's advantage",
-    description: "Why the people closest to the work are well positioned to reshape it.",
-    href: "#",
-  },
-  {
-    date: "Feb 2026",
-    title: "Interfaces should explain themselves",
-    description: "On clarity, restraint, and the small details that earn trust.",
-    href: "#",
-  },
-  {
-    date: "Nov 2025",
-    title: "Good systems leave room for judgment",
-    description: "A case for tools that support decisions without pretending to make them.",
-    href: "#",
-  },
-  {
-    date: "Aug 2025",
-    title: "The useful distance between idea and execution",
-    description: "What becomes visible when you stay close enough to both.",
-    href: "#",
-  },
-  {
-    date: "Apr 2025",
-    title: "Software for the way work actually happens",
-    description: "Designing around real behavior instead of the clean version of it.",
-    href: "#",
-  },
 ];
 
 export default function WritingPage() {

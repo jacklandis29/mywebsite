@@ -28,3 +28,14 @@ npm run build
 ## Deployment
 
 The site is configured for deployment on Vercel. Import the repository, keep the standard Next.js build settings, and deploy.
+
+To deliver messages from the homepage contact form, add these environment variables in Vercel:
+
+```bash
+RESEND_API_KEY=re_...
+CONTACT_TO_EMAIL=you@example.com
+# Optional after verifying a sending domain in Resend:
+CONTACT_FROM_EMAIL="Jack Landis <hello@yourdomain.com>"
+```
+
+Without these variables, the form offers visitors a direct email fallback.

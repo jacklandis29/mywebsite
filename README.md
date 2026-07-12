@@ -38,4 +38,7 @@ CONTACT_TO_EMAIL=you@example.com
 CONTACT_FROM_EMAIL="Jack Landis <hello@yourdomain.com>"
 ```
 
-Without these variables, the form offers visitors a direct email fallback.
+Set `RESEND_API_KEY` and `CONTACT_TO_EMAIL` for Production, Preview, and
+Development. Redeploy after adding them; Vercel environment variable changes do
+not update an existing deployment. Without these variables, the form offers
+visitors a direct email fallback.

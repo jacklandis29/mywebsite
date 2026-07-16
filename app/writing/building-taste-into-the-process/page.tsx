@@ -15,15 +15,12 @@ export default function ArticlePage() {
           <ArticleBackLink />
         </Suspense>
 
-        <p className="article-kicker">A note on making things</p>
         <h1>Building this site</h1>
         <p className="article-dek">
           I needed to start making things again, so I built this site.
         </p>
         <div className="article-meta">
           <time dateTime="2026-07">July 2026</time>
-          <span aria-hidden="true">·</span>
-          <span>3 min read</span>
         </div>
       </header>
 

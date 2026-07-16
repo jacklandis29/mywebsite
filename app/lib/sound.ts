@@ -78,6 +78,20 @@ const RECIPES = {
       },
     ],
   },
+  shelfTick: {
+    masterGain: 0.2,
+    layers: [
+      {
+        kind: "noise",
+        filterType: "bandpass",
+        filterFrequency: 4400,
+        filterQ: 2.4,
+        attack: 0.001,
+        decay: 0.014,
+        peak: 0.09,
+      },
+    ],
+  },
   tick: {
     masterGain: 0.4,
     layers: [

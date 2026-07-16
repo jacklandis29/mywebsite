@@ -1,8 +1,10 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { playSound } from "../lib/sound";
 
 const REVEAL_DISTANCE = 44;
+const CHIME_COOLDOWN_MS = 6000;
 
 export default function OverscrollReward() {
   const rewardRef = useRef<HTMLParagraphElement>(null);
@@ -14,6 +16,7 @@ export default function OverscrollReward() {
     let pull = 0;
     let touchY: number | null = null;
     let settleTimer: ReturnType<typeof setTimeout> | null = null;
+    let lastChime = -Infinity;
 
     const isAtBottom = () =>
       window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2;
@@ -21,6 +24,11 @@ export default function OverscrollReward() {
     const render = () => {
       const progress = Math.min(pull / REVEAL_DISTANCE, 1);
       reward.style.setProperty("--overscroll-reveal", progress.toString());
+      if (progress >= 1 && performance.now() - lastChime > CHIME_COOLDOWN_MS) {
+        lastChime = performance.now();
+        playSound("bloom");
+        navigator.vibrate?.(8);
+      }
     };
 
     const settle = () => {

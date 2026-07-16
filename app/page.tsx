@@ -7,6 +7,7 @@ import FilmCard from "./components/FilmCard";
 import ProjectCard from "./components/ProjectCard";
 import OverscrollReward from "./components/OverscrollReward";
 import MoreWritingButton from "./components/MoreWritingButton";
+import ShelfTicks from "./components/ShelfTicks";
 
 const writing = [
   { year: "2026", title: "Building this site", href: "/writing/building-taste-into-the-process?from=home" },
@@ -112,6 +113,7 @@ const watching = [
 export default function Home() {
   return (
     <main className="page">
+      <div className="aurora" aria-hidden="true"><i /><i /><i /></div>
       <GlassNav />
       <header className="masthead">
         <div className="identity-lockup">
@@ -251,6 +253,7 @@ export default function Home() {
         <LocalTime />
       </footer>
       <OverscrollReward />
+      <ShelfTicks />
     </main>
   );
 }

@@ -15,13 +15,13 @@ export default function SoundEffects() {
     const onPointerDown = (event: PointerEvent) => {
       void unlockAudio();
       if (
-        event.pointerType === "mouse" &&
-        event.target instanceof Element &&
-        event.target.closest(INTERACTIVE_SELECTOR) &&
-        !event.target.closest(QUIET_SELECTOR)
-      ) {
-        playSound("press");
-      }
+        !(event.target instanceof Element) ||
+        !event.target.closest(INTERACTIVE_SELECTOR) ||
+        event.target.closest(QUIET_SELECTOR)
+      ) return;
+
+      if (event.pointerType === "mouse") playSound("press");
+      else if (event.pointerType === "touch") navigator.vibrate?.(4);
     };
 
     const onPointerOver = (event: PointerEvent) => {

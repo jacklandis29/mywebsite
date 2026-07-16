@@ -51,7 +51,8 @@ html[data-ambience] { --ambient-wash: rgba(27, 27, 24, .018); }
 }
 
 html {
-  background: var(--bg);
+  background: linear-gradient(var(--ambient-wash), var(--ambient-wash)), var(--bg);
+  transition: background-color 1.5s ease;
 }
 
 html.home-scroll-restoring {
@@ -60,8 +61,6 @@ html.home-scroll-restoring {
 
 body {
   margin: 0;
-  background: linear-gradient(var(--ambient-wash), var(--ambient-wash)), var(--bg);
-  transition: background-color 1.5s ease;
   color: var(--text);
   font-family: var(--font-geist-sans), system-ui, sans-serif;
   font-size: 15px;
@@ -1564,6 +1563,7 @@ a.artifact-card:hover .artifact-visual {
   color: var(--muted);
   font-size: 18px;
   line-height: 1.65;
+  text-wrap: balance;
 }
 
 .project-hero {
@@ -1581,6 +1581,14 @@ a.artifact-card:hover .artifact-visual {
 .project-story {
   max-width: 640px;
   margin: 0 auto;
+}
+
+.project-header + .project-story {
+  margin-top: 28px;
+}
+
+.project-header + .project-story > .project-section:first-child {
+  padding-top: 36px;
 }
 
 .project-section {
@@ -2743,4 +2751,96 @@ a.artifact-card:hover .artifact-visual {
     order: -1;
     padding-top: 0;
   }
+}
+
+/* Aurora backdrop */
+.aurora {
+  --aurora-a: var(--accent-blue);
+  --aurora-b: var(--accent-mint);
+  --aurora-c: var(--accent-pink);
+  --aurora-strength: 0.42;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: min(540px, 78vh);
+  overflow: hidden;
+  z-index: -1;
+  pointer-events: none;
+  mask-image: linear-gradient(to bottom, black 38%, transparent 96%);
+}
+
+html[data-ambience="morning"] .aurora {
+  --aurora-a: var(--accent-mint);
+  --aurora-b: #f4c98e;
+  --aurora-c: var(--accent-blue);
+}
+
+html[data-ambience="evening"] .aurora {
+  --aurora-a: var(--accent-coral);
+  --aurora-b: var(--accent-pink);
+  --aurora-c: var(--accent-blue);
+}
+
+html[data-ambience="night"] .aurora {
+  --aurora-a: var(--accent);
+  --aurora-b: var(--accent-blue);
+  --aurora-c: var(--accent-mint);
+  --aurora-strength: 0.34;
+}
+
+@media (prefers-color-scheme: dark) {
+  .aurora { --aurora-strength: 0.62; }
+  html[data-ambience="night"] .aurora { --aurora-strength: 0.5; }
+}
+
+.aurora i {
+  position: absolute;
+  width: 560px;
+  height: 440px;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: var(--aurora-strength);
+  will-change: transform;
+}
+
+.aurora i:nth-child(1) {
+  top: -170px;
+  left: calc(50% - 480px);
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--aurora-a) 42%, transparent), transparent 74%);
+  animation: aurora-drift-a 36s ease-in-out infinite alternate;
+}
+
+.aurora i:nth-child(2) {
+  top: -130px;
+  left: calc(50% - 130px);
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--aurora-b) 36%, transparent), transparent 74%);
+  animation: aurora-drift-b 44s ease-in-out infinite alternate;
+}
+
+.aurora i:nth-child(3) {
+  top: -200px;
+  left: calc(50% + 170px);
+  width: 480px;
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--aurora-c) 26%, transparent), transparent 74%);
+  animation: aurora-drift-c 52s ease-in-out infinite alternate;
+}
+
+@keyframes aurora-drift-a {
+  from { transform: translate3d(0, 0, 0) scale(1); }
+  to { transform: translate3d(72px, 34px, 0) scale(1.14); }
+}
+
+@keyframes aurora-drift-b {
+  from { transform: translate3d(0, 18px, 0) scale(1.08); }
+  to { transform: translate3d(-58px, -16px, 0) scale(0.96); }
+}
+
+@keyframes aurora-drift-c {
+  from { transform: translate3d(0, 0, 0) scale(0.94); }
+  to { transform: translate3d(-46px, 40px, 0) scale(1.1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aurora i { animation: none; }
 }

@@ -117,14 +117,17 @@ export default function Home() {
       <GlassNav />
       <header className="masthead">
         <div className="identity-lockup">
-          <Image
-            className="portrait"
-            src="/jack.png"
-            alt="Illustrated portrait of Jack Landis"
-            width={72}
-            height={72}
-            sizes="72px"
-          />
+          <picture className="portrait-frame">
+            <source media="(prefers-color-scheme: dark)" srcSet="/jack-dark.png" />
+            <Image
+              className="portrait"
+              src="/jack.png"
+              alt="Illustrated portrait of Jack Landis"
+              width={72}
+              height={72}
+              sizes="72px"
+            />
+          </picture>
           <div>
             <h1>Jack Landis</h1>
             <p className="bio">

@@ -30,8 +30,8 @@ const projects = [
   },
   {
     name: "Post Credits",
-    description: "A simpler film diary with a Beli-style comparison system for ranking what you watch.",
-    meta: "In progress",
+    description: "A live film diary that uses comparisons instead of star ratings to build an honest record of your taste.",
+    meta: "Live · In progress",
     variant: "after",
     href: "/projects/post-credits",
   },

@@ -1571,6 +1571,10 @@ a.artifact-card:hover .artifact-visual {
   text-wrap: balance;
 }
 
+.project-live-link {
+  margin-top: 22px;
+}
+
 .project-hero {
   margin: 56px 0 72px;
 }

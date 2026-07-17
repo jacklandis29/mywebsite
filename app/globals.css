@@ -101,10 +101,14 @@ a {
   transform-origin: left center;
 }
 
+.portrait-frame,
 .portrait {
   display: block;
   width: 72px;
   height: 72px;
+}
+
+.portrait {
   border: 1px solid var(--line);
   border-radius: 50%;
   object-fit: cover;
@@ -412,6 +416,7 @@ a {
     gap: 16px;
   }
 
+  .portrait-frame,
   .portrait {
     width: 56px;
     height: 56px;
